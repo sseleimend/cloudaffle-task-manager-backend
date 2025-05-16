@@ -1,0 +1,20 @@
+{
+  "name": "cloudaffle-task-manager-backend",
+  "version": "1.0.0",
+  "description": "Cloudaffle Task Manager Backend",
+  "homepage": "https://github.com/sseleimend/cloudaffle-task-manager-backend#readme",
+  "bugs": {
+    "url": "https://github.com/sseleimend/cloudaffle-task-manager-backend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sseleimend/cloudaffle-task-manager-backend.git"
+  },
+  "license": "MIT",
+  "author": "Victor Seleimend",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
