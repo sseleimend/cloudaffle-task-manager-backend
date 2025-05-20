@@ -1,27 +1,10 @@
 const { StatusCodes } = require("http-status-codes");
 const createTaskProvider = require("./providers/createTask.provider.js");
+const getTasksProvider = require("./providers/getTasks.provider.js");
 
-function handleGetTasks(req, res) {
-  let response = [
-    {
-      title: "Title of the task",
-      date: "2025-01-01T12:00:00Z",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur venenatis, felis a rutrum finibus, metus elit dapibus ante, eu tempus mi nulla sed libero. Suspendisse sed odio id magna imperdiet accumsan. Nunc aliquet, sem at dictum vehicula, elit urna pellentesque nisl, sit amet feugiat enim nisi vel turpis. Phasellus faucibus.",
-      priority: "normal",
-      status: "todo",
-    },
-    {
-      title: "Title of the task 2",
-      date: "2025-01-01T12:00:00Z",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur venenatis, felis a rutrum finibus, metus elit dapibus ante, eu tempus mi nulla sed libero. Suspendisse sed odio id magna imperdiet accumsan. Nunc aliquet, sem at dictum vehicula, elit urna pellentesque nisl, sit amet feugiat enim nisi vel turpis. Phasellus faucibus.",
-      priority: "normal",
-      status: "todo",
-    },
-  ];
-
-  res.status(StatusCodes.OK).json(response);
+async function handleGetTasks(req, res) {
+  const tasks = await getTasksProvider(req, res);
+  res.status(StatusCodes.OK).json(tasks);
 }
 
 async function handlePostTasks(req, res) {
