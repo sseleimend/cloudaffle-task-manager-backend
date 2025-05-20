@@ -3,6 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const morgan = require("morgan");
 const cors = require("cors");
+const responseFormatter = require("./middleware/responseFormatter.middleware.js");
 const tasksRouter = require("./tasks/tasks.routes.js");
 
 const app = express();
@@ -28,6 +29,8 @@ app.use(
     stream: accessLogStream,
   })
 );
+
+app.use(responseFormatter);
 
 app.use("/", tasksRouter);
 
