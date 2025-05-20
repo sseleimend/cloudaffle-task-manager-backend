@@ -31,7 +31,7 @@ const taskSchema = new Schema(
       required: [true, "Task due date is required"],
     },
   },
-  { timestamps: true }
+  { timestamps: true, versionKey: false }
 );
 
 const Task = model("Task", taskSchema);
