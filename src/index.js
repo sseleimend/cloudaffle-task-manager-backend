@@ -3,6 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const morgan = require("morgan");
 const cors = require("cors");
+const { StatusCodes } = require("http-status-codes");
 const responseFormatter = require("./middleware/responseFormatter.middleware.js");
 const tasksRouter = require("./tasks/tasks.routes.js");
 
@@ -33,6 +34,10 @@ app.use(
 app.use(responseFormatter);
 
 app.use("/", tasksRouter);
+
+app.use((req, res) => {
+  res.status(StatusCodes.NOT_FOUND).json(null);
+});
 
 app.listen(port, () => {
   console.log(`App listening on port number: ${port}`);
