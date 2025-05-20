@@ -30,10 +30,6 @@ const taskSchema = new Schema(
       type: Date,
       required: [true, "Task due date is required"],
     },
-    createdAt: {
-      type: Date,
-      default: Date.now(),
-    },
   },
   { timestamps: true }
 );
