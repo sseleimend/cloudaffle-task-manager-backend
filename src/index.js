@@ -8,6 +8,7 @@ const responseFormatter = require("./middleware/responseFormatter.middleware.js"
 const tasksRouter = require("./tasks/tasks.routes.js");
 const authRouter = require("./auth/auth.routes.js");
 const usersRouter = require("./users/users.routes.js");
+const mongoose = require("mongoose");
 
 const app = express();
 const port = 3001;
@@ -43,6 +44,22 @@ app.use((req, res) => {
   res.status(StatusCodes.NOT_FOUND).json(null);
 });
 
-app.listen(port, () => {
-  console.log(`App listening on port number: ${port}`);
-});
+async function bootstrap() {
+  try {
+    await mongoose.connect(
+      "mongodb+srv://sseleimend:U39yVmn284x@cluster0.tlskeqb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+      {
+        dbName: "taskManager",
+      }
+    );
+    console.log("Connected to MongoDB");
+    app.listen(port, () => {
+      console.log(`App listening on port number: ${port}`);
+    });
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+}
+
+bootstrap();
