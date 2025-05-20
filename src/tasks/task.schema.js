@@ -1,4 +1,4 @@
-const { Schema } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const taskSchema = new Schema(
   {
@@ -37,3 +37,7 @@ const taskSchema = new Schema(
   },
   { timestamps: true }
 );
+
+const Task = model("Task", taskSchema);
+
+module.exports = Task;
