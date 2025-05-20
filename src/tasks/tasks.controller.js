@@ -1,5 +1,24 @@
 function handleGetTasks(req, res) {
-  res.send("GET tasks controller");
+  let response = [
+    {
+      title: "Title of the task",
+      date: "2025-01-01T12:00:00Z",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur venenatis, felis a rutrum finibus, metus elit dapibus ante, eu tempus mi nulla sed libero. Suspendisse sed odio id magna imperdiet accumsan. Nunc aliquet, sem at dictum vehicula, elit urna pellentesque nisl, sit amet feugiat enim nisi vel turpis. Phasellus faucibus.",
+      priority: "normal",
+      status: "todo",
+    },
+    {
+      title: "Title of the task 2",
+      date: "2025-01-01T12:00:00Z",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur venenatis, felis a rutrum finibus, metus elit dapibus ante, eu tempus mi nulla sed libero. Suspendisse sed odio id magna imperdiet accumsan. Nunc aliquet, sem at dictum vehicula, elit urna pellentesque nisl, sit amet feugiat enim nisi vel turpis. Phasellus faucibus.",
+      priority: "normal",
+      status: "todo",
+    },
+  ];
+
+  res.status(200).json(response);
 }
 
 function handlePostTasks(req, res) {
