@@ -1,17 +1,6 @@
 const winston = require("winston");
 const path = require("path");
 
-const logger = winston.createLogger({
-  format: winston.format.combine(
-    winston.format.timestamp({
-      format: "YYYY-MM-DD HH:mm:ss",
-    }),
-    winston.format.printf(
-      (info) => `${info.timestamp} [${info.level}] : ${info.message}`
-    )
-  ),
-});
-
 const transports = [
   new winston.transports.Console({
     level: "info",
@@ -31,3 +20,17 @@ const transports = [
     format: winston.format.json(),
   }),
 ];
+
+const logger = winston.createLogger({
+  format: winston.format.combine(
+    winston.format.timestamp({
+      format: "YYYY-MM-DD HH:mm:ss",
+    }),
+    winston.format.printf(
+      (info) => `${info.timestamp} [${info.level}] : ${info.message}`
+    )
+  ),
+  transports: transports,
+});
+
+module.exports = logger;
