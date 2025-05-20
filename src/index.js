@@ -9,6 +9,7 @@ const tasksRouter = require("./tasks/tasks.routes.js");
 const authRouter = require("./auth/auth.routes.js");
 const usersRouter = require("./users/users.routes.js");
 const mongoose = require("mongoose");
+const expressWinstonLogger = require("./middleware/expressWinston.middleware.js");
 
 const app = express();
 const port = 3001;
@@ -33,8 +34,8 @@ app.use(
     stream: accessLogStream,
   })
 );
-
 app.use(responseFormatter);
+app.use(expressWinstonLogger);
 
 app.use("/", tasksRouter);
 app.use("/auth", authRouter);
