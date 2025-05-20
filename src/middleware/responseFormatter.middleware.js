@@ -13,8 +13,9 @@ function responseFormatter(req, res, next) {
     };
 
     originalJson.call(res, response);
-    next();
   };
+
+  next();
 }
 
 module.exports = responseFormatter;
