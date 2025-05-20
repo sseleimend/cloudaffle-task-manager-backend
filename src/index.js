@@ -35,7 +35,7 @@ app.use(
 app.use(responseFormatter);
 
 app.use("/", tasksRouter);
-app.use("/", authRouter);
+app.use("/auth", authRouter);
 
 app.use((req, res) => {
   res.status(StatusCodes.NOT_FOUND).json(null);
