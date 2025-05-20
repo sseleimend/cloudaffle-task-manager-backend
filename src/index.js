@@ -7,6 +7,7 @@ const { StatusCodes } = require("http-status-codes");
 const responseFormatter = require("./middleware/responseFormatter.middleware.js");
 const tasksRouter = require("./tasks/tasks.routes.js");
 const authRouter = require("./auth/auth.routes.js");
+const usersRouter = require("./users/users.routes.js");
 
 const app = express();
 const port = 3001;
@@ -36,6 +37,7 @@ app.use(responseFormatter);
 
 app.use("/", tasksRouter);
 app.use("/", authRouter);
+app.use("/users", usersRouter);
 
 app.use((req, res) => {
   res.status(StatusCodes.NOT_FOUND).json(null);
