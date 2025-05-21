@@ -10,6 +10,12 @@ const authRouter = require("./auth/auth.routes.js");
 const usersRouter = require("./users/users.routes.js");
 const mongoose = require("mongoose");
 const expressWinstonLogger = require("./middleware/expressWinston.middleware.js");
+const dotenv = require("dotenv");
+
+process.env.NODE_ENV = process.env.NODE_ENV || "development";
+const envFile = `.env.${process.env.NODE_ENV}`;
+
+dotenv.config({ path: envFile });
 
 const app = express();
 const port = 3001;
