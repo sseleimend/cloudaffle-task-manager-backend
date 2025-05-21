@@ -18,7 +18,9 @@ async function getTaskProvider(req, res) {
       req.originalUrl.split("?")[0]
     }`;
 
-    const tasks = await Task.find()
+    const tasks = await Task.find({
+      status: { $in: ["todo", "inProgress"] },
+    })
       .limit(limit)
       .skip(currentPage - 1)
       .sort({
