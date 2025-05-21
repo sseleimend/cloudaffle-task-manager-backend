@@ -18,8 +18,7 @@ const envFile = `.env.${process.env.NODE_ENV}`;
 dotenv.config({ path: envFile });
 
 const app = express();
-const port = 3001;
-console.log(process.env.NODE_ENV);
+const port = parseInt(process.env.PORT);
 
 app.use(express.json());
 
@@ -54,12 +53,9 @@ app.use((req, res) => {
 
 async function bootstrap() {
   try {
-    await mongoose.connect(
-      "mongodb+srv://sseleimend:U39yVmn284x@cluster0.tlskeqb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
-      {
-        dbName: "taskManager",
-      }
-    );
+    await mongoose.connect(process.env.DATABASE_URL, {
+      dbName: process.env.DATABASE_NAME,
+    });
     console.log("Connected to MongoDB");
     app.listen(port, () => {
       console.log(`App listening on port number: ${port}`);
