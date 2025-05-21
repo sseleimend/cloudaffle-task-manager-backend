@@ -1,5 +1,6 @@
 POST http://localhost:3001/tasks
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODJkZGViMTZmZGRhYTUyNTAyMzg5N2EiLCJlbWFpbCI6ImpvaG5AZG9lLmNvbSIsImlhdCI6MTc0Nzg0MTg4MywiZXhwIjoxNzQ3OTI4MjgzfQ.4A9uxoUr7WnQfBt6AfiRc7FYYsdRekMZbqplevwtQsc
 {
   "title": "Task with a user",
   "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur venenatis, felis a rutrum finibus, metus elit dapibus ante, eu tempus mi nulla sed libero. Suspendisse sed odio id magna imperdiet accumsan. Nunc aliquet, sem at dictum vehicula, elit urna pellentesque nisl, sit amet feugiat enim nisi vel turpis. Phasellus faucibus.",
