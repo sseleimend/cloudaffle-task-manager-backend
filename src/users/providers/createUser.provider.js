@@ -2,17 +2,22 @@ const { matchedData } = require("express-validator");
 const User = require("../user.schema.js");
 const errorLogger = require("../../helpers/errorLogger.helper.js");
 const { StatusCodes } = require("http-status-codes");
+const bcrypt = require("bcrypt");
 
 async function createUserProvider(req, res) {
   const validatedData = matchedData(req);
 
   try {
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(validatedData.password, salt);
+
     const user = new User({
       firstName: validatedData.firstName,
       lastName: validatedData.lastName,
       email: validatedData.email,
-      password: validatedData.password,
+      password: hashedPassword,
     });
+
     await user.save();
     delete user.password;
     res.status(StatusCodes.CREATED).json(user);
