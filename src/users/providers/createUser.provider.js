@@ -19,8 +19,13 @@ async function createUserProvider(req, res) {
     });
 
     await user.save();
-    delete user.password;
-    res.status(StatusCodes.CREATED).json(user);
+
+    res.status(StatusCodes.CREATED).json({
+      _id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+    });
   } catch (error) {
     errorLogger("Error creating a new user", req, error);
     return res.status(StatusCodes.GATEWAY_TIMEOUT).json({
