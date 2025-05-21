@@ -1,11 +1,14 @@
 const { matchedData } = require("express-validator");
 const { StatusCodes } = require("http-status-codes");
 const errorLogger = require("../../helpers/errorLogger.helper.js");
+const getUserByEmail = require("../../users/providers/getUserByEmail.provider.js");
 
 async function loginProvider(req, res) {
   const validatedData = matchedData(req);
 
   try {
+    const user = await getUserByEmail(validatedData.email);
+
     return res.status(StatusCodes.OK).json({});
   } catch (error) {
     errorLogger("Error while trying to login", req, error);

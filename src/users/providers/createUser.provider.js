@@ -3,14 +3,13 @@ const User = require("../user.schema.js");
 const errorLogger = require("../../helpers/errorLogger.helper.js");
 const { StatusCodes } = require("http-status-codes");
 const bcrypt = require("bcrypt");
+const getUserByEmail = require("./getUserByEmail.provider.js");
 
 async function createUserProvider(req, res) {
   const validatedData = matchedData(req);
 
   try {
-    const existingUser = await User.findOne({
-      email: validatedData.email,
-    });
+    const existingUser = await getUserByEmail(validatedData.email);
 
     if (existingUser) {
       return res.status(StatusCodes.BAD_REQUEST).json({
