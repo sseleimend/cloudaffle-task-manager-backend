@@ -8,6 +8,8 @@ const tasksRouter = require("../tasks/tasks.routes.js");
 const authRouter = require("../auth/auth.routes.js");
 const usersRouter = require("../users/users.routes.js");
 const expressWinstonLogger = require("../middleware/expressWinston.middleware.js");
+const swaggerUi = require("swagger-ui-express");
+const specs = require("./swagger.config.js");
 
 function configureApp(app) {
   /* cors */
@@ -37,6 +39,8 @@ function configureApp(app) {
   app.use("/", tasksRouter);
   app.use("/auth", authRouter);
   app.use("/users", usersRouter);
+
+  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
   app.use((req, res) => {
     res.status(StatusCodes.NOT_FOUND).json(null);
