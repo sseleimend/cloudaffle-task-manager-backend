@@ -21,6 +21,6 @@ const createTaskValidator = [
     .isISO8601(),
   body("priority").isIn(["low", "normal", "high"]),
   body("status").isIn(["todo", "inProgress", "completed"]),
+  body("user").notEmpty().isMongoId(),
 ];
-
 module.exports = createTaskValidator;

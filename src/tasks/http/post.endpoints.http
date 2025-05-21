@@ -1,9 +1,10 @@
 POST http://localhost:3001/tasks
 Content-Type: application/json
 {
-  "title": "Title of the task",
+  "title": "Task with a user",
   "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur venenatis, felis a rutrum finibus, metus elit dapibus ante, eu tempus mi nulla sed libero. Suspendisse sed odio id magna imperdiet accumsan. Nunc aliquet, sem at dictum vehicula, elit urna pellentesque nisl, sit amet feugiat enim nisi vel turpis. Phasellus faucibus.",
   "status": "todo",  
   "priority": "normal",
-  "dueDate": "2025-01-01T12:00:00Z"
+  "dueDate": "2025-01-01T12:00:00Z", 
+  "user": "682cff46ada34ba5a227928a"
 }
