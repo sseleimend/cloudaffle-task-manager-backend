@@ -14,11 +14,32 @@ async function getTaskProvider(req, res) {
     const totalPages = Math.ceil(totalTasks / limit);
     const nextPage = currentPage === totalPages ? currentPage : currentPage + 1;
     const previousPage = currentPage === 1 ? currentPage : currentPage - 1;
+    const baseUrl = `${req.protocol}://${req.get("host")}${
+      req.originalUrl.split("?")[0]
+    }`;
 
     const tasks = await Task.find()
       .limit(limit)
       .skip(currentPage - 1);
-    return res.status(StatusCodes.OK).json(tasks);
+
+    let finalResponse = {
+      data: tasks,
+      pagination: {
+        itemsPerPage: limit,
+        totalItems: totalTasks,
+        currentPage: currentPage,
+        totalPages: totalPages,
+      },
+      links: {
+        first: `${baseUrl}/?limit=${limit}&page=1&order=${order}`,
+        last: `${baseUrl}/?limit=${limit}&page=${totalPages}&order=${order}`,
+        currentPage: `${baseUrl}/?limit=${limit}&page=${currentPage}&order=${order}`,
+        next: `${baseUrl}/?limit=${limit}&page=${nextPage}&order=${order}`,
+        previous: `${baseUrl}/?limit=${limit}&page=${previousPage}&order=${order}`,
+      },
+    };
+
+    return res.status(StatusCodes.OK).json(finalResponse);
   } catch (error) {
     errorLogger("Error while fetching tasks", req, error);
     return res.status(StatusCodes.GATEWAY_TIMEOUT).json({
