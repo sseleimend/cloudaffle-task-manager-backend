@@ -243,6 +243,61 @@ tasksRouter.patch(
   }
 );
 
+/**
+ * @swagger
+ *
+ * components:
+ *  securitySchemes:
+ *    bearerAuth:
+ *      type: http
+ *      scheme: bearer
+ *      bearerFormat: JWT
+ * /tasks:
+ *   delete:
+ *    summary: Delete a task
+ *    tags: [Tasks]
+ *    security:
+ *      - bearerAuth: []
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/TaskDelete'
+ *    responses:
+ *      200:
+ *        description: Task deleted successfully
+ *        content:
+ *          application/json:
+ *            example:
+ *              status: success
+ *              statusCode: 200
+ *              message: Ok
+ *              data:
+ *                acknowledged: true
+ *                deletedCount: 1
+ *      401:
+ *        description: Not authorized error
+ *        content:
+ *          application/json:
+ *            example:
+ *              status: error
+ *              statusCode: 401
+ *              message: Unauthorized
+ *              error:
+ *                message: You are not authorized to perform this request
+ *      403:
+ *        description: Forbidden error
+ *        content:
+ *          application/json:
+ *            example:
+ *              status: error
+ *              statusCode: 403
+ *              message: Forbidden
+ *              error:
+ *                message: Please login again, ivalid token
+ */
+
 tasksRouter.delete(
   "/tasks",
   [deleteTaskValidator, authenticateToken],
