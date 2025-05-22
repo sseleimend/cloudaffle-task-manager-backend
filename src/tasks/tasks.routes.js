@@ -10,6 +10,79 @@ const authenticateToken = require("../middleware/authenticateToken.middleware.js
 
 const tasksRouter = express.Router();
 
+/**
+ * @swagger
+ *
+ * components:
+ *  securitySchemes:
+ *    bearerAuth:
+ *      type: http
+ *      scheme: bearer
+ *      bearerFormat: JWT
+ * /tasks:
+ *   get:
+ *    summary: Get all tasks
+ *    tags: [Tasks]
+ *    security:
+ *      - bearerAuth: []
+ *    parameters:
+ *      - in: query
+ *        name: limit
+ *        schema:
+ *          type: integer
+ *          default: 10
+ *        description: The number of tasks needed in a single response
+ *      - in: query
+ *        name: page
+ *        schema:
+ *          type: integer
+ *          default: 1
+ *        description: The page number of the tasks response
+ *      - in: query
+ *        name: order
+ *        schema:
+ *          type: string
+ *          default: 'asc'
+ *          enum: ['asc', 'dsc']
+ *        description: Order of tasks
+ *    responses:
+ *      200:
+ *        description: Task created successfully
+ *        content:
+ *          application/json:
+ *            example:
+ *              status: success
+ *              statusCode: 200
+ *              message: Ok
+ *              data:
+ *                - _id: 682df37f265c26067b3b7ece
+ *                  title: Create a new video
+ *                  description: A video about fullstack web development
+ *                  status: todo
+ *                  priority: normal
+ *                  dueDate: 2025-01-01T12:00:00Z
+ *      401:
+ *        description: Not authorized error
+ *        content:
+ *          application/json:
+ *            example:
+ *              status: error
+ *              statusCode: 401
+ *              message: Unauthorized
+ *              error:
+ *                message: You are not authorized to perform this request
+ *      403:
+ *        description: Forbidden error
+ *        content:
+ *          application/json:
+ *            example:
+ *              status: error
+ *              statusCode: 403
+ *              message: Forbidden
+ *              error:
+ *                message: Please login again, ivalid token
+ */
+
 tasksRouter.get(
   "/tasks",
   [getTasksValidator, authenticateToken],
