@@ -24,6 +24,65 @@ tasksRouter.get(
   }
 );
 
+/**
+ * @swagger
+ *
+ * components:
+ *  securitySchemes:
+ *    bearerAuth:
+ *      type: http
+ *      scheme: bearer
+ *      bearerFormat: JWT
+ * /tasks:
+ *   post:
+ *    summary: Create a new task
+ *    tags: [Tasks]
+ *    security:
+ *      - bearerAuth: []
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/Task'
+ *    responses:
+ *      201:
+ *        description: Task created successfully
+ *        content:
+ *          application/json:
+ *            example:
+ *              status: success
+ *              statusCode: 201
+ *              message: Created
+ *              data:
+ *                _id: 682df37f265c26067b3b7ece
+ *                title: Create a new video
+ *                description: A video about fullstack web development
+ *                status: todo
+ *                priority: normal
+ *                dueDate: 2025-01-01T12:00:00Z
+ *      401:
+ *        description: Not authorized error
+ *        content:
+ *          application/json:
+ *            example:
+ *              status: error
+ *              statusCode: 401
+ *              message: Unauthorized
+ *              error:
+ *                message: You are not authorized to perform this request
+ *      403:
+ *        description: Forbidden error
+ *        content:
+ *          application/json:
+ *            example:
+ *              status: error
+ *              statusCode: 403
+ *              message: Forbidden
+ *              error:
+ *                message: Please login again, ivalid token
+ */
+
 tasksRouter.post(
   "/tasks",
   [createTaskValidator, authenticateToken],
