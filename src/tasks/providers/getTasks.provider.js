@@ -8,7 +8,7 @@ async function getTaskProvider(req, res) {
 
   try {
     const totalTasks = await Task.countDocuments();
-    const currentPage = data.page;
+    const currentPage = Number(data.page);
     const limit = data.limit;
     const order = data.order;
     const totalPages = Math.ceil(totalTasks / limit);
