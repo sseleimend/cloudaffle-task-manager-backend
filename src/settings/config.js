@@ -14,7 +14,7 @@ const specs = require("./swagger.config.js");
 function configureApp(app) {
   /* cors */
   const corsOptions = {
-    origin: ["localhost"],
+    origin: ["http://localhost:5173"],
   };
   app.use(cors(corsOptions));
 
