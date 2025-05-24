@@ -30,17 +30,19 @@ async function getTaskProvider(req, res) {
     let finalResponse = {
       data: tasks,
       pagination: {
-        itemsPerPage: limit,
-        totalItems: totalTasks,
-        currentPage: currentPage,
-        totalPages: totalPages,
-      },
-      links: {
-        first: `${baseUrl}/?limit=${limit}&page=1&order=${order}`,
-        last: `${baseUrl}/?limit=${limit}&page=${totalPages}&order=${order}`,
-        currentPage: `${baseUrl}/?limit=${limit}&page=${currentPage}&order=${order}`,
-        next: `${baseUrl}/?limit=${limit}&page=${nextPage}&order=${order}`,
-        previous: `${baseUrl}/?limit=${limit}&page=${previousPage}&order=${order}`,
+        meta: {
+          itemsPerPage: limit,
+          totalItems: totalTasks,
+          currentPage: currentPage,
+          totalPages: totalPages,
+        },
+        links: {
+          first: `${baseUrl}/?limit=${limit}&page=1&order=${order}`,
+          last: `${baseUrl}/?limit=${limit}&page=${totalPages}&order=${order}`,
+          currentPage: `${baseUrl}/?limit=${limit}&page=${currentPage}&order=${order}`,
+          next: `${baseUrl}/?limit=${limit}&page=${nextPage}&order=${order}`,
+          previous: `${baseUrl}/?limit=${limit}&page=${previousPage}&order=${order}`,
+        },
       },
     };
 
