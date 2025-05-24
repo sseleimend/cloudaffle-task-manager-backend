@@ -24,7 +24,7 @@ async function loginProvider(req, res) {
     return res
       .status(StatusCodes.OK)
       .json({
-        acceessToken: token,
+        accessToken: token,
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
