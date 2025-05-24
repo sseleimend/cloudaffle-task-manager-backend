@@ -22,7 +22,7 @@ async function getTaskProvider(req, res) {
       status: { $in: ["todo", "inProgress"] },
     })
       .limit(limit)
-      .skip(currentPage - 1)
+      .skip(limit * (currentPage - 1))
       .sort({
         createdAt: order === "asc" ? 1 : -1,
       });
