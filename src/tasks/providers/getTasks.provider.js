@@ -8,6 +8,9 @@ async function getTaskProvider(req, res) {
 
   try {
     const totalTasks = await Task.countDocuments();
+    const completedTasks = await Task.countDocuments({ status: "completed" });
+    const inProgressTasks = await Task.countDocuments({ status: "inProgress" });
+    const todoTasks = await Task.countDocuments({ status: "todo" });
     const currentPage = Number(data.page);
     const limit = data.limit;
     const order = data.order;
@@ -35,6 +38,9 @@ async function getTaskProvider(req, res) {
           totalItems: totalTasks,
           currentPage: currentPage,
           totalPages: totalPages,
+          completedTasks,
+          inProgressTasks,
+          todoTasks,
         },
         links: {
           first: `${baseUrl}/?limit=${limit}&page=1&order=${order}`,
